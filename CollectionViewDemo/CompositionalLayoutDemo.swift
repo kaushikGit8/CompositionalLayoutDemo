@@ -181,24 +181,7 @@ extension ViewController: UICollectionViewDelegate,
             return header
         }
     }
-
-//    func supplementary(collectionView: UICollectionView,
-//                       kind: String,
-//                       indexPath: IndexPath) -> UICollectionReusableView? {
-//        let header = collectionView
-//            .dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
-//                                              withReuseIdentifier: "HeaderReusableView",
-//                                              for: indexPath) as! HeaderReusableView
-//        //header.configure(with: "Sticky header \(indexPath.section + 1)")
-//        return header
-//    }
 }
-
-
-
-
-
-
 
 extension UIColor {
     static var random: UIColor {
@@ -208,10 +191,6 @@ extension UIColor {
                        alpha: 1)
     }
 }
-
-
-
-
 
 extension UIView {
     func add(view: UIView, left: CGFloat, right: CGFloat, top: CGFloat, bottom: CGFloat) {

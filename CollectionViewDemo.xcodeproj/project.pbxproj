@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B100544C29AABB7600CFDD38 /* TwoLabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100544A29AABB7600CFDD38 /* TwoLabelCollectionViewCell.swift */; };
-		B100544D29AABB7600CFDD38 /* TwoLabelCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B100544B29AABB7600CFDD38 /* TwoLabelCollectionViewCell.xib */; };
 		B17D47DB292982F800911232 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17D47DA292982F800911232 /* AppDelegate.swift */; };
 		B17D47DD292982F800911232 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17D47DC292982F800911232 /* SceneDelegate.swift */; };
 		B17D47DF292982F800911232 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17D47DE292982F800911232 /* ViewController.swift */; };
@@ -23,8 +21,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B100544A29AABB7600CFDD38 /* TwoLabelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoLabelCollectionViewCell.swift; sourceTree = "<group>"; };
-		B100544B29AABB7600CFDD38 /* TwoLabelCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TwoLabelCollectionViewCell.xib; sourceTree = "<group>"; };
 		B17D47D7292982F800911232 /* CollectionViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B17D47DA292982F800911232 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B17D47DC292982F800911232 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,8 +78,6 @@
 				B1B6467A292A509F00D6A5B5 /* MyCollectionViewCell.xib */,
 				B1B6467D292A5A0D00D6A5B5 /* HeaderReusableView.swift */,
 				B1B6467E292A5A0D00D6A5B5 /* HeaderReusableView.xib */,
-				B100544A29AABB7600CFDD38 /* TwoLabelCollectionViewCell.swift */,
-				B100544B29AABB7600CFDD38 /* TwoLabelCollectionViewCell.xib */,
 			);
 			path = CollectionViewDemo;
 			sourceTree = "<group>";
@@ -150,7 +144,6 @@
 				B17D47E4292982FA00911232 /* Assets.xcassets in Resources */,
 				B1B64680292A5A0D00D6A5B5 /* HeaderReusableView.xib in Resources */,
 				B1B6467C292A509F00D6A5B5 /* MyCollectionViewCell.xib in Resources */,
-				B100544D29AABB7600CFDD38 /* TwoLabelCollectionViewCell.xib in Resources */,
 				B17D47E2292982F800911232 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -166,7 +159,6 @@
 				B1B6467B292A509F00D6A5B5 /* MyCollectionViewCell.swift in Sources */,
 				B1B6467F292A5A0D00D6A5B5 /* HeaderReusableView.swift in Sources */,
 				B17D47DF292982F800911232 /* ViewController.swift in Sources */,
-				B100544C29AABB7600CFDD38 /* TwoLabelCollectionViewCell.swift in Sources */,
 				B17D47DB292982F800911232 /* AppDelegate.swift in Sources */,
 				B17D47DD292982F800911232 /* SceneDelegate.swift in Sources */,
 			);

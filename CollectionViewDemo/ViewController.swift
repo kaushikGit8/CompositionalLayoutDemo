@@ -15,40 +15,18 @@ class ViewController2: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .yellow
         setupCollectionView()
+        title = "Kaushik"
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     
     func setupCollectionView() {
         searchCollectionView = UICollectionView(frame: .zero,
                                                     collectionViewLayout: compositionalLayout)
-        //compositionalLayout.configuration.interSectionSpacing = 5
-        
-        
         searchCollectionView.backgroundColor = .white
-        
-        let nib11 = UINib(nibName: "TwoLabelCollectionViewCell", bundle: nil)
-        searchCollectionView.register(nib11,
-                                      forCellWithReuseIdentifier: "TwoLabelCollectionViewCell")
-        
-        let nib = UINib(nibName: "MyCollectionViewCell", bundle: nil)
-        searchCollectionView.register(nib,
-                                      forCellWithReuseIdentifier: "MyCollectionViewCell1")
-        
-        let nib1 = UINib(nibName: "MyCollectionViewCell", bundle: nil)
-        searchCollectionView.register(nib1,
-                                      forCellWithReuseIdentifier: "MyCollectionViewCell2")
-        
         let nib2 = UINib(nibName: "MyCollectionViewCell", bundle: nil)
         searchCollectionView.register(nib2,
-                                      forCellWithReuseIdentifier: "MyCollectionViewCell3")
-        
-        let nib3 = UINib(nibName: "MyCollectionViewCell", bundle: nil)
-        searchCollectionView.register(nib3,
-                                      forCellWithReuseIdentifier: "MyCollectionViewCell4")
-        
-        let nib4 = UINib(nibName: "MyCollectionViewCell", bundle: nil)
-        searchCollectionView.register(nib4,
-                                      forCellWithReuseIdentifier: "MyCollectionViewCell5")
+                                      forCellWithReuseIdentifier: "MyCollectionViewCell")
          self.view.add(view: searchCollectionView,
                       left: 10,
                       right: -10,
@@ -56,14 +34,42 @@ class ViewController2: UIViewController {
                       bottom: -10)
         searchCollectionView.delegate = self
         searchCollectionView.dataSource = self
+        searchCollectionView.automaticallyAdjustsScrollIndicatorInsets = false
+        searchCollectionView.contentInsetAdjustmentBehavior = .never
     }
     
-    fileprivate func compactLayout() -> NSCollectionLayoutSection? {
+    fileprivate func compactLayout(_ sectionIndex: Int) -> NSCollectionLayoutSection? {
+        guard sectionIndex == 0 else {
+            // Item
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                  heightDimension: .estimated(40))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            item.contentInsets = .init(top: 5, leading: 0, bottom: 5, trailing: 0)
+            // Container Group
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                   heightDimension: .estimated(40))
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+            
+            // Section
+            let section = NSCollectionLayoutSection(group: group)
+            section.interGroupSpacing = 0
+            section.visibleItemsInvalidationHandler = { (items, offset, environment) in
+                if (items.first?.frame.minY ?? 0) < offset.y,
+                   (self.navigationController?.isNavigationBarHidden ?? false) {
+                        self.navigationController?.setNavigationBarHidden(false, animated: false)
+                } else if offset.y < (items.first?.frame.minY ?? 0) {
+                    if !(self.navigationController?.isNavigationBarHidden ?? false) {
+                        self.navigationController?.setNavigationBarHidden(true, animated: false)
+                    }
+                }
+            }
+            return section
+        }
         // Item
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                               heightDimension: .estimated(40))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
+        item.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
         // Container Group
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                                heightDimension: .estimated(40))
@@ -71,7 +77,8 @@ class ViewController2: UIViewController {
         
         // Section
         let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 5
+        //section.orthogonalScrollingBehavior = .paging
+        section.interGroupSpacing = 0
         return section
     }
     
@@ -152,7 +159,7 @@ class ViewController2: UIViewController {
     lazy var compositionalLayout = UICollectionViewCompositionalLayout(sectionProvider: {
         (sectionIndex, environment) -> NSCollectionLayoutSection? in
         guard environment.traitCollection.horizontalSizeClass != .compact else {
-            return self.compactLayout()
+            return self.compactLayout(sectionIndex)
         }
         return self.regularLayout(sectionIndex)
     })
@@ -169,18 +176,25 @@ extension ViewController2: UICollectionViewDelegate,
                            UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        1
+        3
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        return 20
+        guard section == 0 else {
+            return 50
+        }
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCollectionViewCell1",
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCollectionViewCell",
                                                       for: indexPath) as! MyCollectionViewCell
+        guard indexPath.section == 0 else {
+            cell.text = "Pageing \(indexPath.item)"
+            return cell
+        }
         if indexPath.item % 2 == 0 {
             cell.text = "sdgsdg"
         } else {
